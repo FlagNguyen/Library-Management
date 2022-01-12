@@ -10,13 +10,13 @@ package Model;
  * @author asus
  */
 public class Book {
+
     private int book_id;
     private String book_Name;
     private String book_author;
     private int type;
     private int published_year;
     private int quantity;
-    
 
     public Book(int book_id, String book_Name, String book_author, int type, int published_year, int quantity) {
         this.book_id = book_id;
@@ -25,7 +25,7 @@ public class Book {
         this.type = type;
         this.published_year = published_year;
         this.quantity = quantity;
-        
+
     }
 
     public Book() {
@@ -78,7 +78,5 @@ public class Book {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-   
-    
-    
+
 }

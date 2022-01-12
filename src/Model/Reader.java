@@ -9,14 +9,13 @@ package Model;
  *
  * @author asus
  */
-public class Reader extends Person{
+public class Reader extends Person {
+
     private int reader_id;
     private int type;
 
     public Reader() {
     }
-    
-    
 
     public Reader(int reader_id, int type) {
         this.reader_id = reader_id;
@@ -44,8 +43,5 @@ public class Reader extends Person{
     public void setType(int type) {
         this.type = type;
     }
-    
-    
-    
-    
+
 }
