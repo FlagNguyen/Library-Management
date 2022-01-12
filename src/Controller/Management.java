@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.Book;
+import Model.Reader;
 import java.io.IOException;
 
 /**
@@ -56,5 +57,38 @@ public class Management {
         Book b = new Book(id, name, author, type, year, quantity);
         return b;
     }
+
+    Reader input_Reader(int reader_id) throws IOException {
+        int id = reader_id + 1;
+        String name = util.checkString("Enter reader's name: ");
+        String address = util.checkString("Enter reader's address: ");
+        String phone = "";
+        
+        do {
+            phone = util.checkString("Enter reader's phone number: ");
+            if (phone.matches("[1234567890]+") && phone.length()>=5 && phone.length()<=10){
+                break;
+            }else{
+                System.err.println("Phone number can't has a letter and must has the length is 5 ! Please re-enter !");
+            }            
+        }while (true);  
+        
+        System.out.println("Reader's type: \n1-Student");
+        System.out.println("2-Teacher");
+        System.out.println("3-Staff");
+        int type;
+        do {
+            type = util.checkInterger("Enter reader's type: ");
+            if (type > 0 && type <= 3) {
+                break;
+            }
+            System.err.println("Please enter 1-3 !");
+        } while (true);
+        
+        Reader r = new Reader(id, type, name, address, phone);
+        return r;
+    }
+    
+    
 
 }

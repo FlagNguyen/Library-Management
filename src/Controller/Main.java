@@ -19,7 +19,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {        
         Management mn = new Management();
         Utility util = new Utility();
         Book[] books = new Book[100];
@@ -57,15 +57,28 @@ public class Main {
                                 books[0] = mn.input_Book(10000);
                                 break;
                             }
-                        }else{
+                        } else {
                             if (books[i].getBook_id() == 0) {
-                                books[i] = mn.input_Book(books[i-1].getBook_id());
+                                books[i] = mn.input_Book(books[i - 1].getBook_id());
                                 break;
                             }
                         }
                     }
                     break;
                 case 2:
+                    for (int i = 0; i < readers.length; i++) {
+                        if (i == 0) {
+                            if (readers[i].getReader_id() == 0) {
+                                readers[0] = mn.input_Reader(10000);
+                            }
+                        } else {
+                            if (readers[i].getReader_id() == 0) {
+                                readers[i] = mn.input_Reader(readers[i - 1].getReader_id());
+                            }
+                        }
+
+                    }
+
                     break;
                 case 3:
                     break;
