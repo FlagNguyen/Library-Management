@@ -43,10 +43,10 @@ public class Main {
 
         //Test data:
         readers[0] = new Reader(10001, 1, "nGuYen    qUOc   kY", "Ha Noi", "0705045677");
-        readers[1] = new Reader(10002, 2, "Mr. Phan Tung Lam", "Nam Dinh", "0985838564");
+        readers[1] = new Reader(10002, 2, "Mr. PHAN tung   LaM", "Nam Dinh", "0985838564");
         readers[2] = new Reader(10003, 3, "Phan Truong", "Ha Nam", "09832538564");
         books[0] = new Book(10001, "truyen tranh Doremon", "Fujio Fujiko", 1, 2000, 100);
-        books[1] = new Book(10002, "Electric Thesis", "Thomas King", 4, 2010, 50);
+        books[1] = new Book(10002, "Electric   TheSis", "Thomas King", 4, 2010, 50);
         books[2] = new Book(10003, "How to find girl friend", "Not Me", 3, 2022, 30);
 
         while (true) {
@@ -67,11 +67,13 @@ public class Main {
                         if (i == 0) {
                             if (books[i].getBook_id() == 0) {
                                 books[0] = mn.input_Book(10000);
+                                System.out.println("!!! Input book successfully !!!\n");
                                 break;
                             }
                         } else {
                             if (books[i].getBook_id() == 0) {
                                 books[i] = mn.input_Book(books[i - 1].getBook_id());
+                                System.out.println("!!! Input book successfully !!!\n");
                                 break;
                             }
                         }
@@ -82,12 +84,13 @@ public class Main {
                         if (i == 0) {
                             if (readers[i].getReader_id() == 0) {
                                 readers[0] = mn.input_Reader(10000);
-                                System.out.println("Input reader successfully !!!\n");
+                                System.out.println("!!! Input reader successfully !!!\n");
                                 break;
                             }
                         } else {
                             if (readers[i].getReader_id() == 0) {
                                 readers[i] = mn.input_Reader(readers[i - 1].getReader_id());
+                                System.out.println("!!! Input reader successfully !!!\n");
                                 break;
                             }
                         }
