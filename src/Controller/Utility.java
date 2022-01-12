@@ -25,10 +25,29 @@ public class Utility {
                 output = Integer.parseInt(in.readLine());
                 break;
             } catch (Exception e) {
-                System.out.println("Please Enter Interger");
+                System.err.println("Please Enter Interger");
             }
 
         } while (true);
+
+        return output;
+    }
+
+    public int checkChoice(String mess) {
+        int output = 0;
+        try {
+            do {
+                System.out.print(mess);
+                output = Integer.parseInt(in.readLine());
+                if (output > 0 && output <= 6) {
+                    break;
+                }
+                System.err.println("Please enter 1-6 !!");
+
+            } while (true);
+        } catch (Exception e) {
+            System.err.println("Please enter integer !!!");
+        }
 
         return output;
     }
@@ -40,7 +59,7 @@ public class Utility {
                 System.out.print(mess);
                 out = in.readLine();
                 if (out.isEmpty()) {
-                    System.out.println("Please Enter String");
+                    System.err.println("Please Enter String");
                 } else {
                     break;
                 }

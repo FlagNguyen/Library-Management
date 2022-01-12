@@ -19,9 +19,9 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {        
+    public static void main(String[] args) throws IOException {          
         Management mn = new Management();
-        Utility util = new Utility();
+        Utility util = new Utility();        
         Book[] books = new Book[100];
         Reader[] readers = new Reader[100];
         Borrow[] borrows = new Borrow[100];
@@ -47,8 +47,10 @@ public class Main {
             System.out.println("3.  Borrow book");
             System.out.println("4.  Sort");
             System.out.println("5.  Find Reader");
+            System.out.println("6.  Exit");
 
-            int choice = util.checkInterger("Enter your choice: ");
+            int choice = util.checkChoice("Enter your choice: ");
+            
             switch (choice) {
                 case 1:
                     for (int i = 0; i < books.length; i++) {
@@ -70,10 +72,13 @@ public class Main {
                         if (i == 0) {
                             if (readers[i].getReader_id() == 0) {
                                 readers[0] = mn.input_Reader(10000);
+                                System.out.println("Input reader successfully !!!\n");
+                                break;
                             }
                         } else {
                             if (readers[i].getReader_id() == 0) {
                                 readers[i] = mn.input_Reader(readers[i - 1].getReader_id());
+                                break;
                             }
                         }
 
@@ -86,6 +91,8 @@ public class Main {
                     break;
                 case 5:
                     break;
+                case 6:
+                    return;
             }
         }
     }
