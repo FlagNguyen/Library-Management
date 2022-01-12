@@ -89,19 +89,19 @@ public class Management {
         return r;
     }
 
-    void print_BookArray(Book[] books) {
-        System.out.printf("%-5s| %-30s| %-15s| %-15s| %-10s| %-5s|\n","ID","Book Name","Author","Type","Published Year","Quantity");        
+    protected void print_BookArray(Book[] books) {
+        System.out.printf("%-5s| %-30s| %-15s| %-15s| %-10s| %-5s|\n", "ID", "Book Name", "Author", "Type", "Published Year", "Quantity");
         for (int i = 0; i < books.length; i++) {
-            if (books[i].getBook_id() == 0) {
-                for (int j = 0; j <= i; j++) {
-                    print_Book(books[j]);
-                    System.out.println("");
-                }
+            if (books[i].getBook_id() != 0) {
+
+                print_Book(books[i]);
+                System.out.println("");
+
             }
         }
     }
 
-    void print_Book(Book book) {
+    private void print_Book(Book book) {
         String name = util.standardlizeString(book.getBook_Name());
         String author = util.standardlizeString(book.getBook_author());
 
@@ -124,7 +124,39 @@ public class Management {
         }
 
         System.out.printf("%-5d| %-30s| %-15s| %-15s| %-14d| %-8d|", book.getBook_id(), name, author,
-                 type, book.getPublished_year(), book.getQuantity());
+                type, book.getPublished_year(), book.getQuantity());
     }
 
+    protected void print_ReaderArray(Reader[] readers) {
+        System.out.printf("%-5s| %-20s| %-10s| %-15s| %-10s|\n", "ID", "Reader Name", "Address", "Phone", "Job");
+        for (int i = 0; i < readers.length; i++) {
+            if (readers[i].getReader_id() != 0) {
+                print_Reader(readers[i]);
+                System.out.println("");
+            }
+        }
+    }
+
+    private void print_Reader(Reader reader) {
+
+        String name = util.standardlizeString(reader.getName());
+        String address = util.standardlizeString(reader.getAddress());
+
+        String type = "";
+        switch (reader.getType()) {
+            case 1:
+                type = "Student";
+                break;
+            case 2:
+                type = "Teacher";
+                break;
+            case 3:
+                type = "Staff";
+                break;
+        }
+
+        System.out.printf("%-5d| %-20s| %-10s| %-15s| %-10s|",
+                reader.getReader_id(), name,
+                address, reader.getPhone(), type);
+    }
 }

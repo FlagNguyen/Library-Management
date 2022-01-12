@@ -42,7 +42,7 @@ public class Main {
         }
 
         //Test data:
-        readers[0] = new Reader(10001, 1, "Nguyen Quoc Ky", "Ha Noi", "0705045677");
+        readers[0] = new Reader(10001, 1, "nGuYen    qUOc   kY", "Ha Noi", "0705045677");
         readers[1] = new Reader(10002, 2, "Mr. Phan Tung Lam", "Nam Dinh", "0985838564");
         readers[2] = new Reader(10003, 3, "Phan Truong", "Ha Nam", "09832538564");
         books[0] = new Book(10001, "truyen tranh Doremon", "Fujio Fujiko", 1, 2000, 100);
@@ -102,8 +102,11 @@ public class Main {
                     break;
                 case 6:
                     mn.print_BookArray(books);
+                    System.out.println("");
                     break;
                 case 7:
+                    mn.print_ReaderArray(readers);
+                    System.out.println("");
                     break;
                 case 8:
                     return;
