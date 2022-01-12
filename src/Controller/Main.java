@@ -55,7 +55,9 @@ public class Main {
             System.out.println("3.  Borrow book");
             System.out.println("4.  Sort");
             System.out.println("5.  Find Reader");
-            System.out.println("6.  Exit");
+            System.out.println("6.  Print All Book");
+            System.out.println("7.  Print All Reader");
+            System.out.println("8.  Exit");
 
             int choice = util.checkChoice("Enter your choice: ");
 
@@ -99,6 +101,13 @@ public class Main {
                 case 5:
                     break;
                 case 6:
+                    mn.print_BookArray(books);
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    return;
+                default:
                     return;
             }
         }

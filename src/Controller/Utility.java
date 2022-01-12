@@ -39,10 +39,10 @@ public class Utility {
             do {
                 System.out.print(mess);
                 output = Integer.parseInt(in.readLine());
-                if (output > 0 && output <= 6) {
+                if (output > 0 && output <= 8) {
                     break;
                 }
-                System.err.println("Please enter 1-6 !!");
+                System.err.println("Please enter 1-8 !!");
 
             } while (true);
         } catch (Exception e) {
