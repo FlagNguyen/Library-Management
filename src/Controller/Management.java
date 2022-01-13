@@ -179,96 +179,52 @@ public class Management {
                 pos = i;
             }
         }
-        
-        
+
         //S2. Input book id
         System.out.println("List available book: ");
         print_BookArray(books);
         Book borrow_book = util.search_Book_byId(books);
-        
-        for (int i=0;i<borrows[pos].getBooks().length;i++){
-            if (borrows[pos].getBooks()[i].getBook_id()==0){
-                borrows[pos].getBooks()[i] = borrow_book;
-            }
-            if (borrows[pos].getQuantities()[i] == 0){
-            borrows[pos].getQuantities()[i] = input_Quantity(borrow_book.getQuantity());
-            }else{
-                
+        if (borrow_book.getQuantity() == 0) {
+            System.out.println("This book is over !");
+            borrow_book = util.search_Book_byId(books);
+        } else {
+
+            for (int i = 0; i < borrows[pos].getBooks().length; i++) {
+                if (borrows[pos].getBooks()[i].getBook_id() == 0) {
+                    borrows[pos].getBooks()[i] = borrow_book;
+                }
+                if (borrows[pos].getQuantities()[i] == 0) {
+                    borrows[pos].getQuantities()[i] = input_Quantity(borrow_book.getQuantity());
+                } else if (borrows[pos].getQuantities()[i] < 3 || borrows[pos].getQuantities()[i] > 0) {
+                    borrows[pos].getQuantities()[i] = input_Quantity2(borrow_book.getQuantity(), borrows[pos].getQuantities()[i]);
+                }
             }
         }
-        
 
-        Book[] bs = new Book[5];
-        bs[0] = borrow_book;
-        int temp;
-        int quantity_now = borrow_book.getQuantity();
-        if (quantity_now <= 3) {
-            temp = quantity_now;
+    }
+
+    private int input_Quantity(int quantity) {
+        int out = 0;
+        int temp = 0;
+        if (quantity <= 3) {
+            temp = quantity;
         } else {
             temp = 3;
         }
-        int quantity = util.checkChoice("Enter quantity you want to borrow: ", 0, temp);
-
-        int[] quantities = new int[5];
-        quantities[0] = quantity;
-
-        b.setBooks(bs);
-        b.setQuantities(quantities);
-
-//        for (int i =0; i<b.getBooks().length;i++){
-//            if (b.getBooks()[i].getBook_id() == 0){
-//                b.getBooks()[i] = borrow_book;
-//                b.getQuantities()[i] = quantity;
-//            
-//            }            
-//        }
-        b = borrows[0];
-
-    }
-    private int input_Quantity(int quantity) {
-        
+        out = util.checkChoice("Enter quantity you want to borrow: ", 1, temp);
+        return out;
     }
 
-//    private void borrow_book(int id, Borrow[] borrows, Book[] books, Reader[] readers) {
-//
-//        for (int i = 0; i < borrows.length; i++) {
-//
-//            Book[] borrowed = new Book[5];
-//            for (int b = 0; b < borrowed.length; b++) {
-//                borrowed[b] = new Book(0, "", "", 0, 0, 0);
-//            }
-//            int[] quantities = new int[5];
-//            for (int q = 0; q < quantities.length; q++) {
-//                quantities[q] = 0;
-//            }
-//
-//            if (borrows[i].getReader().getReader_id() == id) {
-//
-//                if (borrows[i].getBooks().length == 5) {
-//                    for (int j = 0; j < 5; j++) {
-//                        borrowed = borrows[i].getBooks();
-//                  }
-//                   print_BookArray(borrowed);
-//                    }
-//                if (borrows[i].getBooks().length < 5) {
-//                    print_BookArray(books);
-//                    Book b = util.search_Book_byId(books);
-//                    
-//
-//                    for (int j = 0; j < 5; j++) {
-//                        if (borrowed[j].getBook_id() == 0) {
-//                            borrowed[j] = b;
-//                        }
-//                        if (quantities[j] == 0) {
-//                            quantities[j] = quantity;
-//                        }
-//                    }
-//
-//                    borrows[i] = new Borrow(util.search_reader(id, readers), borrowed, quantities);
-//                }
-//
-//            }
-//        }
-//    }
+    private int input_Quantity2(int quantity_now, int quantity_borrowed) {
+        int out = 0;
+        System.out.printf("You have borrowed %d item", quantity_borrowed);
+        int to = 3 - quantity_borrowed;
 
+        out = util.checkChoice("Enter quatity you want to borrow: ", 1, to);
+        if (out > quantity_now) {
+            out = util.checkChoice("Don't enough book in stock", 1, quantity_now);
+        }
+        return out;
+    }
+   
 }
