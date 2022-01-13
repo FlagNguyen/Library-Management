@@ -166,8 +166,7 @@ public class Management {
         //S1. Enter reader id and search in Reader[]
         Reader borrower = util.search_reader_byID(readers);
         System.out.println("This's your information: ");
-        print_Reader(borrower);
-        Borrow b = new Borrow();
+        print_Reader(borrower);        
 
         //S1.2 Search positive of the reader in Borrow[]
         int pos = 0; //Position of reader in Borrows[]
@@ -179,6 +178,9 @@ public class Management {
                 pos = i;
             }
         }
+        
+        //S1.3 Enter infor borrower in right position
+        borrows[pos].setReader(borrower);
 
         //S2. Input book id
         System.out.println("List available book: ");
@@ -197,7 +199,7 @@ public class Management {
                     borrows[pos].getBooks()[i] = borrow_book;                    
                 }
                 //S2.2 Enter quantity borrowed
-                if (borrows[pos].getQuantities()[i] == 0) {
+                if (borrows[pos].getQuantities()[i] == 0) {                    
                     borrows[pos].getQuantities()[i] = input_Quantity(borrow_book.getQuantity());
                     quantity_borrow = borrows[pos].getQuantities()[i];
                 } else if (borrows[pos].getQuantities()[i] < 3 || borrows[pos].getQuantities()[i] > 0) {
@@ -219,7 +221,8 @@ public class Management {
         } else {
             temp = 3;
         }
-        out = util.checkChoice("Enter quantity you want to borrow: ", 1, temp);
+        out = util.checkChoice("Enter quantity you want to borrow: \n", 1, temp);
+   
         return out;
     }
     
@@ -228,7 +231,7 @@ public class Management {
         System.out.printf("You have borrowed %d item", quantity_borrowed);
         int to = 3 - quantity_borrowed;
         
-        out = util.checkChoice("Enter quatity you want to borrow: ", 1, to);
+        out = util.checkChoice("Enter quatity you want to borrow: \n", 1, to);
         if (out > quantity_now) {
             out = util.checkChoice("Don't enough book in stock", 1, quantity_now);
         }
