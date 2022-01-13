@@ -11,20 +11,19 @@ package Model;
  */
 public class Borrow {
 
-
-    private Book[] books;
+//    private int borrow_id;
     private Reader reader;
+    private Book[] books;
     private int[] quantities;
 
     public Borrow() {
     }
 
-    public Borrow(Book[] books, Reader reader, int[] quantities) {
-
-        this.books = books;
+    public Borrow(Reader reader, Book[] books, int[] quantities) {
         this.reader = reader;
+        this.books = books;
         this.quantities = quantities;
-    }
+    }    
 
     public Book[] getBooks() {
         return books;
@@ -50,6 +49,12 @@ public class Borrow {
         this.quantities = quantities;
     }
 
-    
+//    public int getBorrow_id() {
+//        return borrow_id;
+//    }
+//
+//    public void setBorrow_id(int borrow_id) {
+//        this.borrow_id = borrow_id;
+//    }
 
 }

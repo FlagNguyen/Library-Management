@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import Model.Book;
+import Model.Borrow;
 import Model.Reader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +19,7 @@ import java.io.InputStreamReader;
 public class Utility {
 
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
+    
     public int checkInterger(String mess) {
         int output = 0;
         do {
@@ -34,16 +36,16 @@ public class Utility {
         return output;
     }
 
-    public int checkChoice(String mess) {
+    public int checkChoice(String mess, int a, int b) {
         int output = 0;
         try {
             do {
                 System.out.print(mess);
                 output = Integer.parseInt(in.readLine());
-                if (output > 0 && output <= 8) {
+                if (output >= a && output <= b) {
                     break;
                 }
-                System.err.println("Please enter 1-8 !!");
+                System.err.printf("\nPlease enter %d-%d !!", a, b);
 
             } while (true);
         } catch (Exception e) {
@@ -88,7 +90,7 @@ public class Utility {
         return strOut;
     }
 
-    Reader search_reader_byID(Reader[] readers) { //Hàm tìm thông tin reader theo id nhập vào
+    protected Reader search_reader_byID(Reader[] readers) { //Hàm tìm thông tin reader theo id nhập vào
         int id;
         do {
             id = checkInterger("Enter your id in list: ");
@@ -106,5 +108,42 @@ public class Utility {
 
         } while (true);
     }
+    
+    Reader search_reader(int id, Reader[] readers) {
+        for (int i = 0; i < readers.length; i++) {
+                    if (id == readers[i].getReader_id()) {
+                        return readers[i];
+                    }
+                }
+        return null;
+    }
+    
 
+    protected Book search_Book_byId(Book[] books) { //Hàm tìm thông tin sách trên giá
+        int id;
+
+        do {
+            id = checkInterger("Enter book's id: ");
+
+            if (id != 0) {
+                for (int i = 0; i < books.length; i++) {
+                    if (id == books[i].getBook_id()) {
+                        return books[i];
+                    }
+                }
+                System.err.println("This book is not exist in system !!!");
+            } else {
+                System.err.println("Book's id can't be 0 !");
+            }
+        } while (true);
+    }
+
+//    void print_Borrowed_Book(Borrow borrow) {
+//        for (int i = 0; i<borrow.getBooks().length;i++){
+//            
+//        }
+//    }
+
+
+    
 }
