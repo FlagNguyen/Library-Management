@@ -187,11 +187,10 @@ public class Management {
         print_BookArray(books);
         Book borrow_book = util.search_Book_byId(books);
         int quantity_borrow = 0;
+        
         if (borrow_book.getQuantity() == 0) {
-            System.out.println("This book is over !");
-            borrow_book = util.search_Book_byId(books);
-        } else {
-            
+            System.out.println("This book is over !");           
+        } else {            
             for (int i = 0; i < borrows[pos].getBooks().length; i++) {
 
                 //S2.1 Enter chosen book into array Book in Borrow
@@ -200,11 +199,13 @@ public class Management {
                 }
                 //S2.2 Enter quantity borrowed
                 if (borrows[pos].getQuantities()[i] == 0) {                    
-                    borrows[pos].getQuantities()[i] = input_Quantity(borrow_book.getQuantity());
+                    borrows[pos].getQuantities()[i] = input_Quantity(borrow_book.getQuantity()); 
                     quantity_borrow = borrows[pos].getQuantities()[i];
-                } else if (borrows[pos].getQuantities()[i] < 3 || borrows[pos].getQuantities()[i] > 0) {
+                    break;
+                } else if (borrows[pos].getQuantities()[i] < 3 || borrows[pos].getQuantities()[i] > 0) { // Đang lỗi nhập số lượng bị trùng
                     borrows[pos].getQuantities()[i] = input_Quantity2(borrow_book.getQuantity(), borrows[pos].getQuantities()[i]);
                     quantity_borrow = borrows[pos].getQuantities()[i];
+                    break;
                 }
             }
         }
@@ -221,7 +222,7 @@ public class Management {
         } else {
             temp = 3;
         }
-        out = util.checkChoice("Enter quantity you want to borrow: \n", 1, temp);
+        out = util.checkChoice("Enter quantity you want to borrow: ", 1, temp);
    
         return out;
     }

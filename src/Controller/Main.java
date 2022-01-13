@@ -55,7 +55,7 @@ public class Main {
         readers[2] = new Reader(10003, 3, "Phan Truong", "Ha Nam", "09832538564");
         books[0] = new Book(10001, "truyen tranh Doremon", "Fujio Fujiko", 1, 2000, 100);
         books[1] = new Book(10002, "Electric   TheSis", "Thomas King", 4, 2010, 50);
-        books[2] = new Book(10003, "How to find girl friend", "Not Me", 3, 2022, 30);               
+        books[2] = new Book(10003, "How to find girl friend", "Not Me", 3, 2022, 0);               
 
         while (true) {
             System.out.println("1.  Enter new book");
