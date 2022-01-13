@@ -34,12 +34,12 @@ public class Main {
             readers[i] = new Reader(0, 0, "", "", "");
         }
 
-        for (int i = 0; i < borrows.length; i++) {
-            Book[] temp = new Book[1];
-            Reader temp1 = new Reader();
-            int[] temp2 = new int[1];
-            borrows[i] = new Borrow(0, temp, temp1, temp2);
-        }
+//        for (int i = 0; i < borrows.length; i++) {
+//            Book[] temp = new Book[1];
+//            Reader temp1 = new Reader();
+//            int[] temp2 = new int[1];
+//            borrows[i] = new Borrow(temp, temp1, temp2);
+//        }
 
         //Test data:
         readers[0] = new Reader(10001, 1, "nGuYen    qUOc   kY", "Ha Noi", "0705045677");
@@ -47,8 +47,8 @@ public class Main {
         readers[2] = new Reader(10003, 3, "Phan Truong", "Ha Nam", "09832538564");
         books[0] = new Book(10001, "truyen tranh Doremon", "Fujio Fujiko", 1, 2000, 100);
         books[1] = new Book(10002, "Electric   TheSis", "Thomas King", 4, 2010, 50);
-        books[2] = new Book(10003, "How to find girl friend", "Not Me", 3, 2022, 30);
-
+        books[2] = new Book(10003, "How to find girl friend", "Not Me", 3, 2022, 30);    
+        
         while (true) {
             System.out.println("1.  Enter new book");
             System.out.println("2.  Enter new reader");
@@ -98,6 +98,21 @@ public class Main {
                     }
                     break;
                 case 3:
+//                    for (int i=0;i<borrows.length;i++){
+//                        if (i == 0){
+//                            if(borrows[i].getOrder_id() == 0){
+//                                borrows[0] = mn.borrow(10000, books,readers);
+//                                System.out.println("!!! Borrow Successfully !!!\n");
+//                            }
+//                        }else{
+//                            if (borrows[i].getOrder_id()==0){
+//                                borrows[i] = mn.borrow(borrows[i-1].getOrder_id(), books,readers);
+//                                System.out.println("!!! Borrow Successfully !!!");
+//                            }
+//                        }
+//                    }
+//                    
+                    
                     break;
                 case 4:
                     break;

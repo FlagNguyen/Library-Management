@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Reader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -71,7 +72,7 @@ public class Utility {
 
     }
 
-    public String standardlizeString(String s) {
+    protected String standardlizeString(String s) {
         String strOut = "";
         String st = "";
         st = s.trim().toLowerCase().replaceAll("\\s+", " ");
@@ -85,6 +86,25 @@ public class Utility {
             }
         }
         return strOut;
-
     }
+
+    Reader search_reader_byID(Reader[] readers) { //Hàm tìm thông tin reader theo id nhập vào
+        int id;
+        do {
+            id = checkInterger("Enter your id in list: ");
+
+            if (id != 0) {
+                for (int i = 0; i < readers.length; i++) {
+                    if (id == readers[i].getReader_id()) {
+                        return readers[i];
+                    }
+                }
+                System.err.println("Your ID is not exist in system !!!");
+            } else {
+                System.err.println("Your id can't be 0 !");
+            }
+
+        } while (true);
+    }
+
 }
