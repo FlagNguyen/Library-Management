@@ -109,6 +109,7 @@ public class Main {
                     mn.borrow(books, readers, borrows);
                     break;
                 case 4:
+                    mn.print_Borrower(borrows);
                     break;
                 case 5:
                     break;

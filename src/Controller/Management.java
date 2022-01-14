@@ -167,15 +167,13 @@ public class Management {
         Reader borrower = util.search_reader_byID(readers);
         System.out.println("This's your information: ");
         print_Reader(borrower);
-        
-        
 
         //S1.2 Search positive of the reader in Borrow[]
         int pos = 0; //Position of reader in Borrows[]
         for (int i = 0; i < borrows.length; i++) {
             if (borrows[i].getReader().equals(borrower)) {
-                if(borrows[i].getBooks().length == 5){
-                    System.out.println("You have borrowed 5 books ! Please give back to borrow another one!" );
+                if (borrows[i].getBooks().length == 5) {
+                    System.out.println("You have borrowed 5 books ! Please give back to borrow another one!");
                     break;
                 }
                 pos = i;
@@ -197,7 +195,7 @@ public class Management {
         if (borrow_book.getQuantity() == 0) {
             System.out.println("This book is over !");
         } else {
-            for (int i = 0; i < borrows[pos].getBooks().length; i++) {                
+            for (int i = 0; i < borrows[pos].getBooks().length; i++) {
                 if (borrow_book.getBook_id() == borrows[pos].getBooks()[i].getBook_id()) { // Check exist in borrow.book
                     System.out.printf("You have borrowed %d this book.\n", borrows[pos].getQuantities()[i]);
                     if (borrows[pos].getQuantities()[i] == 3) {
@@ -213,7 +211,7 @@ public class Management {
                     quantity_borrow = borrows[pos].getQuantities()[i];
                     break;
                 }
-                
+
             }
         }
 
@@ -258,7 +256,27 @@ public class Management {
             }
         }
     }
-    
-    
+
+    protected void print_Borrower(Borrow[] borrows) {
+        for (int i = 0; i < borrows.length; i++) {
+            if (borrows[i].getReader().getReader_id() != 0) {
+                System.out.println("Reader information:  ");
+                print_Reader(borrows[i].getReader());
+                
+                System.out.println("\nBook borrowed: ");
+                System.out.printf("%-7s| %-25s| %-10s|", "ID", "Book Name", "Quantity");
+                for (int j = 0; j < borrows[i].getBooks().length; j++) {
+                    if (borrows[i].getBooks()[j].getBook_id() != 0) {                        
+                        System.out.printf("\n%-7d| %-25s| %-10d|", borrows[i].getBooks()[j].getBook_id(),
+                                borrows[i].getBooks()[j].getBook_Name(),
+                                borrows[i].getQuantities()[j]);
+                    }
+                }
+                
+                System.out.println("\n-----------------------------------------------------------------------\n");
+            }
+        }
+        System.out.println("");
+    }
 
 }
