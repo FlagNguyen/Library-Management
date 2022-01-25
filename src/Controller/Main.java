@@ -107,9 +107,22 @@ public class Main {
                     break;
                 case 3:
                     mn.borrow(books, readers, borrows);
+                    mn.print_Borrower(borrows);
                     break;
                 case 4:
-                    mn.print_Borrower(borrows);
+                    System.out.println("1.  Sort by name");
+                    System.out.println("2.  Sort by borrowed book");
+                    int c = util.checkChoice("Enter your choice: ", 1, 2);
+                    switch (c){
+                        case 1:
+                            mn.sort_name(borrows);
+                            mn.print_Borrower(borrows);
+                            break;
+                        case 2:
+                            mn.sort_BorrowedBook(borrows);
+                            mn.print_Borrower(borrows);
+                            break;
+                    }
                     break;
                 case 5:
                     break;
@@ -122,6 +135,7 @@ public class Main {
                     System.out.println("");
                     break;
                 case 8:
+                    mn.find_borrower(borrows);
                     return;
                 default:
                     return;

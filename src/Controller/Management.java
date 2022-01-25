@@ -168,18 +168,16 @@ public class Management {
         System.out.println("This's your information: ");
         print_Reader(borrower);
 
-        //S1.2 Search positive of the reader in Borrow[]
+        //S1.2 Search position of the reader in Borrow[]
         int pos = 0; //Position of reader in Borrows[]
         for (int i = 0; i < borrows.length; i++) {
-            if (borrows[i].getReader().equals(borrower)) {
-                if (borrows[i].getBooks().length == 5) {
-                    System.out.println("You have borrowed 5 books ! Please give back to borrow another one!");
-                    break;
-                }
+            if (borrows[i].getReader().equals(borrower)) {                
                 pos = i;
+                break;
 
             } else if (borrows[i].getReader().getReader_id() == 0) {
                 pos = i;
+                break;
             }
         }
 
@@ -277,6 +275,43 @@ public class Management {
             }
         }
         System.out.println("");
+    }
+
+    protected void sort_name(Borrow[] borrows) {
+        for (int i = 0; i<borrows.length-1;i++){
+            for (int j = i+1;j<borrows.length;j++){
+                if (borrows[i].getReader().getName().compareTo(borrows[j].getReader().getName())>0){
+                    Borrow temp = borrows[i];
+                    borrows[i] = borrows[j];
+                    borrows[j] = temp;
+                }
+            }
+        }
+    }
+
+    protected void sort_BorrowedBook(Borrow[] borrows) {
+        for(int i =0; i<borrows.length;i++){
+            if(borrows[i].getReader().getReader_id()!=0){
+                for (int a = 0; a < borrows[i].getBooks().length-1;a++){
+                    for (int b = a+1; b<borrows[i].getBooks().length;b++){
+                        if (borrows[i].getQuantities()[a] > borrows[i].getQuantities()[b]){
+                            Book temp = borrows[i].getBooks()[a];
+                            int tmp = borrows[i].getQuantities()[a];
+                            
+                            borrows[i].getBooks()[a] = borrows[i].getBooks()[b];
+                            borrows[i].getQuantities()[a] = borrows[i].getQuantities()[b];
+                            
+                            borrows[i].getBooks()[b] = temp;
+                            borrows[i].getQuantities()[b] = tmp;                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    void find_borrower(Borrow[] borrows) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
