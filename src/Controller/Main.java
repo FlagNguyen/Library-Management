@@ -125,6 +125,7 @@ public class Main {
                     }
                     break;
                 case 5:
+                    mn.find_borrower(borrows);
                     break;
                 case 6:
                     mn.print_BookArray(books);
@@ -135,7 +136,6 @@ public class Main {
                     System.out.println("");
                     break;
                 case 8:
-                    mn.find_borrower(borrows);
                     return;
                 default:
                     return;
