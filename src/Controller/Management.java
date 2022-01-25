@@ -171,7 +171,7 @@ public class Management {
         //S1.2 Search position of the reader in Borrow[]
         int pos = 0; //Position of reader in Borrows[]
         for (int i = 0; i < borrows.length; i++) {
-            if (borrows[i].getReader().equals(borrower)) {                
+            if (borrows[i].getReader().equals(borrower)) {
                 pos = i;
                 break;
 
@@ -260,17 +260,17 @@ public class Management {
             if (borrows[i].getReader().getReader_id() != 0) {
                 System.out.println("Reader information:  ");
                 print_Reader(borrows[i].getReader());
-                
+
                 System.out.println("\nBook borrowed: ");
                 System.out.printf("%-7s| %-25s| %-10s|", "ID", "Book Name", "Quantity");
                 for (int j = 0; j < borrows[i].getBooks().length; j++) {
-                    if (borrows[i].getBooks()[j].getBook_id() != 0) {                        
+                    if (borrows[i].getBooks()[j].getBook_id() != 0) {
                         System.out.printf("\n%-7d| %-25s| %-10d|", borrows[i].getBooks()[j].getBook_id(),
                                 borrows[i].getBooks()[j].getBook_Name(),
                                 borrows[i].getQuantities()[j]);
                     }
                 }
-                
+
                 System.out.println("\n-----------------------------------------------------------------------\n");
             }
         }
@@ -278,9 +278,9 @@ public class Management {
     }
 
     protected void sort_name(Borrow[] borrows) {
-        for (int i = 0; i<borrows.length-1;i++){
-            for (int j = i+1;j<borrows.length;j++){
-                if (borrows[i].getReader().getName().compareTo(borrows[j].getReader().getName())>0){
+        for (int i = 0; i < borrows.length - 1; i++) {
+            for (int j = i + 1; j < borrows.length; j++) {
+                if (borrows[i].getReader().getName().compareTo(borrows[j].getReader().getName()) > 0) {
                     Borrow temp = borrows[i];
                     borrows[i] = borrows[j];
                     borrows[j] = temp;
@@ -290,19 +290,19 @@ public class Management {
     }
 
     protected void sort_BorrowedBook(Borrow[] borrows) {
-        for(int i =0; i<borrows.length;i++){
-            if(borrows[i].getReader().getReader_id()!=0){
-                for (int a = 0; a < borrows[i].getBooks().length-1;a++){
-                    for (int b = a+1; b<borrows[i].getBooks().length;b++){
-                        if (borrows[i].getQuantities()[a] > borrows[i].getQuantities()[b]){
+        for (int i = 0; i < borrows.length; i++) {
+            if (borrows[i].getReader().getReader_id() != 0) {
+                for (int a = 0; a < borrows[i].getBooks().length - 1; a++) {
+                    for (int b = a + 1; b < borrows[i].getBooks().length; b++) {
+                        if (borrows[i].getQuantities()[a] > borrows[i].getQuantities()[b]) {
                             Book temp = borrows[i].getBooks()[a];
                             int tmp = borrows[i].getQuantities()[a];
-                            
+
                             borrows[i].getBooks()[a] = borrows[i].getBooks()[b];
                             borrows[i].getQuantities()[a] = borrows[i].getQuantities()[b];
-                            
+
                             borrows[i].getBooks()[b] = temp;
-                            borrows[i].getQuantities()[b] = tmp;                            
+                            borrows[i].getQuantities()[b] = tmp;
                         }
                     }
                 }
@@ -310,8 +310,24 @@ public class Management {
         }
     }
 
-    void find_borrower(Borrow[] borrows) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected void find_borrower(Borrow[] borrows) throws IOException {
+        String name = util.checkString("Enter name you want to find: ");
+        for (int i = 0; i < borrows.length; i++) {
+            if (borrows[i].getReader().getName().toLowerCase().contains(name.toLowerCase())) {
+                System.out.println("Reader information:  ");
+                print_Reader(borrows[i].getReader());
+
+                System.out.println("\nBook borrowed: ");
+                System.out.printf("%-7s| %-25s| %-10s|", "ID", "Book Name", "Quantity");
+                for (int j = 0; j < borrows[i].getBooks().length; j++) {
+                    if (borrows[i].getBooks()[j].getBook_id() != 0) {
+                        System.out.printf("\n%-7d| %-25s| %-10d|", borrows[i].getBooks()[j].getBook_id(),
+                                borrows[i].getBooks()[j].getBook_Name(),
+                                borrows[i].getQuantities()[j]);
+                    }
+                }
+            }
+        }
     }
 
 }
